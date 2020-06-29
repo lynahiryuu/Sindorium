@@ -353,9 +353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15ab787f040834643a76da86bb69bb10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTarget: {fileID: 1524378589}
-  InitPosCamera: {x: 0, y: 0, z: 0}
-  InterpolationFactor: 0
+  rotationSpeedCamera: 50
 --- !u!1 &1476357638
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,7 +452,7 @@ GameObject:
   - component: {fileID: 1524378592}
   m_Layer: 0
   m_Name: Main Character
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -514,7 +512,7 @@ GameObject:
   - component: {fileID: 1873931081}
   m_Layer: 0
   m_Name: Terrain
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295

@@ -7,7 +7,8 @@ public class CharacterManager : MonoBehaviour {
 
     [SerializeField]
     private float speed = 5f;
-    //private float jump = 0.5f;
+    private float jump;
+    private int jumpNumber = 3;
     [SerializeField]
     private float rotationSpeed;
 
@@ -15,6 +16,7 @@ public class CharacterManager : MonoBehaviour {
 	void Start ()
     {
         rotationSpeed = 10 * speed;
+        jump = 5 * speed;
 	}
 	
 	// Update is called once per frame
@@ -22,6 +24,7 @@ public class CharacterManager : MonoBehaviour {
     {
         MovePlayer();
         TurnPlayer();
+        JumpPlayer();
 	}
 
     private void MovePlayer()
@@ -36,8 +39,28 @@ public class CharacterManager : MonoBehaviour {
     private void TurnPlayer()
     {
         float yaw = Input.GetAxis("Yaw") * rotationSpeed * Time.deltaTime;
-
         transform.Rotate(0.0f, yaw, 0.0f);
+    }
+
+    private void JumpPlayer()
+    {
+ 
+        if(jumpNumber >= 0 && Input.GetAxis("Jump")!= 0)
+        {
+            transform.position += new Vector3(0, jump * Time.deltaTime, 0);
+            jumpNumber--;
+        }
+        
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+
+        if(collision.gameObject.tag == "Ground")
+        {
+            //Debug.Log("Player has touched the ground");
+            jumpNumber = 3;
+        }
     }
 
 
