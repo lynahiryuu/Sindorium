@@ -12,7 +12,7 @@ public class CharacterManager : MonoBehaviour {
     [SerializeField]
     private float rotationSpeed;
     private Rigidbody playerRigidBody;
-    private bool isGrounded;
+  
 
 	// Use this for initialization
 	void Start ()
@@ -20,7 +20,7 @@ public class CharacterManager : MonoBehaviour {
         rotationSpeed = 10 * speed;
         jump = 50 * speed;
         playerRigidBody = GetComponent<Rigidbody>();
-        isGrounded = true;
+ 
 	}
 	
 	// Update is called once per frame
