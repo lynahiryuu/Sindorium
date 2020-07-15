@@ -2,17 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterManager : MonoBehaviour {
+public class PlayerManager : MonoBehaviour {
     // Used to manage character
 
-    [SerializeField]
-    private float speed = 5f;
+    // For Jumping and Moving
+    [SerializeField] private float speed = 5f;
+    [SerializeField] private float rotationSpeed;
     private float jump;
     private int jumpNumber = 2;
-    [SerializeField]
-    private float rotationSpeed;
     private Rigidbody playerRigidBody;
-  
+
+    // For Casting a Fireball
+    [SerializeField] private GameObject FireBallPrefab;
+    private GameObject FireBall;
+
 
 	// Use this for initialization
 	void Start ()
@@ -28,9 +31,15 @@ public class CharacterManager : MonoBehaviour {
     {
         MovePlayer();
         TurnPlayer();
-        if (Input.GetButtonDown("Jump") && jumpNumber >= 0)
+
+        if (Input.GetButtonDown("Jump") && jumpNumber > 0)
         {
             JumpPlayer();
+        }
+
+        if (Input.GetButtonDown("Fire"))
+        {
+            CastFire();
         }
         
 	}
@@ -50,19 +59,26 @@ public class CharacterManager : MonoBehaviour {
         transform.Rotate(0.0f, yaw, 0.0f);
     }
 
+    // The player Jump when this function is called
     private void JumpPlayer()
     {
  
-        //if(jumpNumber >= 0)
-        //{
-            //Debug.Log(Input.GetAxis("Jump"));
-            //transform.position += new Vector3(0, jump * Time.deltaTime, 0);
-            playerRigidBody.AddForce(new Vector3(0, jump, 0));
-            jumpNumber--;
-            
-        //}
+        playerRigidBody.AddForce(new Vector3(0, jump, 0));
+        jumpNumber--;
         
     }
+
+    // Called when you press E, cast a fireball
+    private void CastFire()
+    {
+        // Instantiating
+        Vector3 InitPosition = this.transform.position + 0.5f * transform.forward;
+        Quaternion InitRotation = Quaternion.Euler(new Vector3(90f, 0f, 0f));
+        FireBall = Instantiate(FireBallPrefab, InitPosition, InitRotation);
+        FireBall.transform.parent = null;
+
+    }
+
 
     private void OnCollisionEnter(Collision collision)
     {

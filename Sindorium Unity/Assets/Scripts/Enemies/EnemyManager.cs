@@ -23,11 +23,13 @@ public class EnemyManager : MonoBehaviour {
     {
         if(collision.gameObject.tag == "Shot" && PV > 0)
         {
+            Debug.Log("Enemy touched");
             PV -= 1;
         }
 
-        else if(collision.gameObject.tag == "Shot" && PV <= 0)
+        if(collision.gameObject.tag == "Shot" && PV <= 0)
         {
+            Debug.Log("Enemy dead");
             Destroy(this.gameObject);
         }
     }
