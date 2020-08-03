@@ -11,8 +11,17 @@ public class GateManager : MonoBehaviour {
 
     public void Start()
     {
-        //Looking for the GameObjet tagged PivotGate which turns correctly the gate
-        PivotGate = GameObject.FindGameObjectWithTag("PivotGate");
+        //Looking for the GameObjet tagged PivotGate which turns correctly the gate. The pivot is in child position
+        foreach(Transform child in this.transform)
+        {
+            if(child.tag == "PivotGate")
+            {
+                PivotGate = child.gameObject;
+                //Debug.Log("Child found");
+            }
+        }
+        //PivotGate = GameObject.FindGameObjectWithTag("PivotGate");
+        
 
     }
 
