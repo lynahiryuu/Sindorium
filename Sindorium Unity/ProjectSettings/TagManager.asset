@@ -10,6 +10,7 @@ TagManager:
   - PlayerBody
   - Shot
   - Enemy
+  - Trigger
   layers:
   - Default
   - TransparentFX
